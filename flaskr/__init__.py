@@ -28,7 +28,17 @@ def create_app(test_config = None):
     
     from . import db
     db.init_app(app)
-    from . import auth
-    app.register_blueprint(auth.bp)
+    from . import auth_patient
+    app.register_blueprint(auth_patient.bp)
+    from . import patient
+    app.register_blueprint(patient.bp)
+    app.add_url_rule('/', endpoint='index_patient')
+
+    from . import auth_provider
+    app.register_blueprint(auth_provider.bp)
+    from . import provider
+    app.register_blueprint(provider.bp)
+    app.add_url_rule('/', endpoint='index_provider')
+
 
     return app

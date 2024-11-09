@@ -1,0 +1,25 @@
+{% extends 'base_provider.html' %}
+
+{% block header %}
+  <h1>{% block title %}Registered Patients{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1> patient: {{ post['username'] }}</h1>
+          <div class="about">by {{ post['username'] }}</div>
+        </div>
+          <a class="action" href="{{ url_for('provider.create', patiend_id=post['id']) }}">New Record</a>
+          <a class="action" href="{{ url_for('provider.update', id=post['id']) }}">Edit Records</a>
+          <a class="action" href="{{ url_for('provider.see_records', id=post['id']) }}">See Records</a>
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

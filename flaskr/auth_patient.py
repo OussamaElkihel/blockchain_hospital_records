@@ -1,13 +1,13 @@
-import functools
+import functools, logging
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth_patient', __name__, url_prefix='/auth_patient')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -25,18 +25,18 @@ def register():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO user (username, password) VALUES (?, ?)",
+                    "INSERT INTO patient (username, password) VALUES (?, ?)",
                     (username, generate_password_hash(password)),
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"User {username} is already registered."
+                error = f"Patient {username} is already registered."
             else:
-                return redirect(url_for("auth.login"))
+                return redirect(url_for("auth_patient.login"))
 
         flash(error)
 
-    return render_template('auth/register.html')
+    return render_template('auth_patient/register.html')
 
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -47,7 +47,7 @@ def login():
         db = get_db()
         error = None
         user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
+            'SELECT * FROM patient WHERE username = ?', (username,)
         ).fetchone()
 
         if user is None:
@@ -58,11 +58,11 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('index_patient'))
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth_patient/login.html')
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -70,21 +70,23 @@ def load_logged_in_user():
 
     if user_id is None:
         g.user = None
+        current_app.logger.info('g.user not set')
     else:
+        current_app.logger.info('user_id = %d', user_id)
         g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
+            'SELECT * FROM patient WHERE id = ?', (user_id,)
         ).fetchone()
 
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth_patient.login'))
 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('auth_patient.login'))
 
         return view(**kwargs)
 

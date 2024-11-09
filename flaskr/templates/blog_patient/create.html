@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Record{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="{{ url_for('provider.create', patient_id=patient_id) }}">
+    <label for="symptoms">Symptoms</label>
+    <textarea name="symptoms" id="symptoms" required>{{ request.form['symptoms'] }}</textarea>
+
+    <label for="condition">Condition</label>
+    <textarea name="condition" id="condition" required>{{ request.form['condition'] }}</textarea>
+
+    <label for="treatment">Treatment</label>
+    <textarea name="treatment" id="treatment" required>{{ request.form['treatment'] }}</textarea>
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+2024-11-09 14:00:03,060 WARNING:  * Debugger is active!
+2024-11-09 14:00:03,062 INFO:  * Debugger PIN: 103-582-974
+2024-11-09 14:00:19,191 INFO:  * Detected change in 'C:\\Users\\oussa\\OneDrive\\Desktop\\S5\\Blockchain\\blockchain_project\\flask_project\\flaskr\\auth_patient.py', reloading
+2024-11-09 14:00:19,486 WARNING:  * Debugger is active!
+2024-11-09 14:00:19,488 INFO:  * Debugger PIN: 103-582-974
+2024-11-09 14:00:30,581 INFO:  * Detected change in 'C:\\Users\\oussa\\OneDrive\\Desktop\\S5\\Blockchain\\blockchain_project\\flask_project\\flaskr\\auth_patient.py', reloading
+2024-11-09 14:00:30,880 WARNING:  * Debugger is active!
+2024-11-09 14:00:30,882 INFO:  * Debugger PIN: 103-582-974
+2024-11-09 14:00:37,797 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-09 14:00:37,798 INFO: [33mPress CTRL+C to quit[0m
+2024-11-09 14:00:37,799 INFO:  * Restarting with stat
+2024-11-09 14:00:38,047 WARNING:  * Debugger is active!
+2024-11-09 14:00:38,049 INFO:  * Debugger PIN: 103-582-974
+2024-11-09 14:00:46,177 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:46] "GET / HTTP/1.1" 200 -
+2024-11-09 14:00:46,215 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-09 14:00:47,831 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:47] "GET /auth_patient/login HTTP/1.1" 200 -
+2024-11-09 14:00:47,850 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-09 14:00:51,781 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "[35m[1mPOST /auth_patient/login HTTP/1.1[0m" 500 -
+2024-11-09 14:00:51,803 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "GET /auth_patient/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-09 14:00:51,813 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "GET /auth_patient/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-11-09 14:00:51,858 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "GET /auth_patient/login?__debugger__=yes&cmd=resource&f=console.png&s=uIhjdD5DtjkPP7tUm5G8 HTTP/1.1" 200 -
+2024-11-09 14:00:51,858 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "[36mGET /auth_patient/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-09 14:00:51,879 INFO: 127.0.0.1 - - [09/Nov/2024 14:00:51] "[36mGET /auth_patient/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-09 14:01:27,407 INFO:  * Detected change in 'C:\\Users\\oussa\\OneDrive\\Desktop\\S5\\Blockchain\\blockchain_project\\flask_project\\flaskr\\auth_patient.py', reloading
+2024-11-09 14:01:27,434 INFO:  * Restarting with stat

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}See Records{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <!--<label for="title">symptoms</label>
+    <input name="symptoms" id="title" value="{{ post['symptoms'] }}" required>-->
+
+    <label for="body">symptoms</label>
+    <textarea name="symptoms" id="body">{{ post['symptoms'] }}</textarea>
+    
+    <label for="body">condition</label>
+    <textarea name="condition" id="body">{{ post['condition'] }}</textarea>
+
+    <label for="body">treatment</label>
+    <textarea name="treatment" id="body">{{ post['treatment'] }}</textarea>
+    
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
