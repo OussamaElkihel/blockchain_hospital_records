@@ -17,11 +17,11 @@ def index():
     ).fetchall()
     return render_template('blog_provider/index_provider.html', posts=posts)
 
-@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/<int:patient_id>/create', methods=('GET', 'POST'))
 @login_required_provider
-def create(patiend_id):
+def create(patient_id):
     if request.method == 'POST':
-        symptoms = request.form['symtpoms']
+        symptoms = request.form['symptoms']
         condition = request.form['condition']
         treatment = request.form['treatment']
         error = None
@@ -41,13 +41,18 @@ def create(patiend_id):
             db = get_db()
             db.execute(
                 'INSERT INTO records (symptoms, condition, treatment, author_id, patient_id)'
-                ' VALUES (?, ?, ?, ?)',
-                (symptoms, condition, treatment, g.user['id'], patiend_id)
+                ' VALUES (?, ?, ?, ?, ?)',
+                (symptoms, condition, treatment, g.user['id'], patient_id)
+            )
+            db.execute(
+                'UPDATE patient SET has_record = ?'
+                ' WHERE id = ?',
+                (1 , patient_id)
             )
             db.commit()
             return redirect(url_for('provider.index'))
 
-    return render_template('blog_patient/create.html', patiend_id=patiend_id)
+    return render_template('blog_patient/create.html', patient_id=patient_id)
 
 def get_post(id, check_author=True):
     post = get_db().execute(
@@ -97,10 +102,10 @@ def update(id):
 
     return render_template('blog_patient/update.html', post=post)
 
-@bp.route('/<int:id>/delete', methods=('POST',))
+@bp.route('/<int:id>/delete', methods=('GET', 'POST'))
 @login_required_provider
 def delete(id):
-    get_post(id)
+    #get_post(id)
     db = get_db()
     db.execute('DELETE FROM records WHERE id = ?', (id,))
     db.commit()

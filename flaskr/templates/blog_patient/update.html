@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_provider.html' %}
 
 {% block header %}
   <h1>{% block title %}Edit Patient {{ post['username'] }} Records {% endblock %}</h1>
@@ -22,7 +22,7 @@
     <input type="submit" value="Save">
   </form>
   <hr>
-  <form action="{{ url_for('patient.delete', id=post['id']) }}" method="post">
+  <form action="{{ url_for('provider.delete', id=post['id']) }}" method="post">
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
   </form>
 {% endblock %}

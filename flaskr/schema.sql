@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS records;
 CREATE TABLE patient (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  has_record BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE provider (

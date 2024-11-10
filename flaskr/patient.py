@@ -86,7 +86,7 @@ def update(id):
 
     return render_template('blog_patient/update.html', post=post)
     """
-
+"""
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -94,4 +94,4 @@ def delete(id):
     db = get_db()
     db.execute('DELETE FROM records WHERE id = ?', (id,))
     db.commit()
-    return redirect(url_for('patient.index'))
+    return redirect(url_for('patient.index'))"""
