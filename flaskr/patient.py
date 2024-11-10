@@ -12,13 +12,16 @@ bp = Blueprint('patient', __name__)
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, symptoms, condition, treatment, author_id, username'
-        ' FROM records p JOIN patient u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
+        'SELECT id, username'
+        'FROM provider'
     ).fetchall()
     return render_template('blog_patient/index_patient.html', posts=posts)
 
-"""@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/grant_permission')
+def grant_permission():
+    return
+"""
+@bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
@@ -41,7 +44,11 @@ def create():
             db.commit()
             return redirect(url_for('patient.index'))
 
-    return render_template('blog_patient/create.html')
+    return render_template('blog_patient/create.html')"""
+
+
+""""""
+    
 """
 def get_post(id, check_author=True):
     post = get_db().execute(
@@ -58,7 +65,7 @@ def get_post(id, check_author=True):
         abort(403)
 
     return post
-"""
+
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -85,8 +92,8 @@ def update(id):
             return redirect(url_for('patient.index'))
 
     return render_template('blog_patient/update.html', post=post)
-    """
-"""
+
+
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -94,4 +101,6 @@ def delete(id):
     db = get_db()
     db.execute('DELETE FROM records WHERE id = ?', (id,))
     db.commit()
-    return redirect(url_for('patient.index'))"""
+    return redirect(url_for('patient.index'))
+
+"""

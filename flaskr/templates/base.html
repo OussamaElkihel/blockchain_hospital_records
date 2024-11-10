@@ -6,11 +6,11 @@
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth_patient.logout') }}">Log Out</a>
+      <li><a href="{{ url_for('patient.logout') }}">Log Out</a>
     {% else %}
-      <li><a href="{{ url_for('auth_provider.register') }}">Provider</a>
-      <li><a href="{{ url_for('auth_patient.register') }}">Register</a>
-      <li><a href="{{ url_for('auth_patient.login') }}">Log In</a>
+      <li><a href="{{ url_for('provider.register') }}">Provider</a>
+      <li><a href="{{ url_for('patient.register') }}">Register</a>
+      <li><a href="{{ url_for('patient.login') }}">Log In</a>
     {% endif %}
   </ul>
 </nav>

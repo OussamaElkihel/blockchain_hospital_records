@@ -12,7 +12,8 @@ CREATE TABLE patient (
 CREATE TABLE provider (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  permission BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE records (
@@ -23,6 +24,6 @@ CREATE TABLE records (
   symptoms TEXT NOT NULL,
   condition TEXT NOT NULL,
   treatment TEXT NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES provider (id)
+  FOREIGN KEY (author_id) REFERENCES provider (id),
   FOREIGN KEY (patient_id) REFERENCES patient (id)
 );

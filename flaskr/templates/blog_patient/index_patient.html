@@ -1,10 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base_provider.html' %}
 
 {% block header %}
-  <h1>{% block title %}Records{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('patient.create') }}">New</a>
-  {% endif %}
+  <h1>{% block title %}Registered Providers{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -12,12 +9,11 @@
     <article class="post">
       <header>
         <div>
-          <h1>{{ post['title'] }}</h1>
+          <h1> patient: {{ post['username'] }}</h1>
           <div class="about">by {{ post['username'] }}</div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('patient.update', id=post['id']) }}">Edit</a>
-        {% endif %}
+          <a class="action" href="{{ url_for('patient.grant_permission', parm }}">Grant Permission</a>
+          <a class="action" href="{{ url_for('patient.remove_permission', parm }}">Remove Permission</a>
       </header>
       <p class="body">{{ post['body'] }}</p>
     </article>
