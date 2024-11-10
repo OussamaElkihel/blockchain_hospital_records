@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS provider;
 DROP TABLE IF EXISTS records;
+DROP TABLE IF EXISTS permission;
 
 CREATE TABLE patient (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -12,8 +13,7 @@ CREATE TABLE patient (
 CREATE TABLE provider (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  permission BOOLEAN DEFAULT 0
+  password TEXT NOT NULL
 );
 
 CREATE TABLE records (
@@ -24,6 +24,15 @@ CREATE TABLE records (
   symptoms TEXT NOT NULL,
   condition TEXT NOT NULL,
   treatment TEXT NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES provider (id),
+  FOREIGN KEY (patient_id) REFERENCES patient (id)
+);
+
+CREATE TABLE permission (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  patient_id INTEGER NOT NULL,
+  perm BOOLEAN DEFAULT 0,
   FOREIGN KEY (author_id) REFERENCES provider (id),
   FOREIGN KEY (patient_id) REFERENCES patient (id)
 );
